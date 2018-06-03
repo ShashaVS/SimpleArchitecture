@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="60dp">
+
+    <TextView
+        android:id="@+id/item_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/text_margin"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:layout_centerVertical="true"
+        android:textAppearance="?attr/textAppearanceListItem"
+        android:background="@drawable/cycle"
+        tools:text="000" />
+
+    <TextView
+        android:id="@+id/item_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/text_margin"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textAppearance="?attr/textAppearanceListItem"
+        tools:text="title"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/item_id"
+        android:layout_toEndOf="@+id/item_id" />
+
+    <TextView
+        android:id="@+id/item_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/text_margin"
+        android:textSize="16sp"
+        android:layout_gravity="center"
+        android:maxLines="2"
+        android:textAppearance="?attr/textAppearanceListItem"
+        tools:text="description"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/item_title"
+        android:layout_toEndOf="@+id/item_title" />
+
+    <ImageView
+        android:layout_width="6dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="6dp"
+        android:background="@color/colorPrimary"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        tools:ignore="ContentDescription" />
+
+</RelativeLayout>

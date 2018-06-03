@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Simple Architecture</string>
+
+    <!-- Navigation Menu -->
+    <string name="add_item">Add Item</string>
+    <string name="list_of_Items">List of Items</string>
+
+    <!-- Snack bar -->
+    <string name="item_added">Item was added successfully</string>
+    <string name="item_deleted">Item was deleted successfully</string>
+
+    <!-- 'Add Item' menu -->
+    <string name="name">Item Name</string>
+    <string name="desc">Item Description</string>
+    <string name="save_item">Save Item to DB</string>
+
+</resources>
