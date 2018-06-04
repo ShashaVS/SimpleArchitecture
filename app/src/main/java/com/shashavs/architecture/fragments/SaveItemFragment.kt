@@ -14,7 +14,7 @@ import com.shashavs.architecture.database.ItemEntity
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.fragment_edit.*
+import kotlinx.android.synthetic.main.fragment_save_item.*
 
 class SaveItemFragment: Fragment() {
 
@@ -27,7 +27,7 @@ class SaveItemFragment: Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_edit, container, false)
+        return inflater.inflate(R.layout.fragment_save_item, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -46,8 +46,8 @@ class SaveItemFragment: Fragment() {
 
     private fun insertItem() {
         val item = ItemEntity()
-        item.name = name.text.toString()
-        item.description = description.text.toString()
+        item.name = edit_name.text.toString()
+        item.description = edit_description.text.toString()
         model?.insert(item)
     }
 
