@@ -38,14 +38,17 @@ class ListFragment : Fragment() {
         })
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        val recyclerView = inflater.inflate(R.layout.fragment_list, container, false) as RecyclerView
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_list, container, false)
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
 
         adapter = ListAdapter(data)
-        recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.adapter = adapter
-        recyclerView.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
+        list.layoutManager = LinearLayoutManager(context)
+        list.adapter = adapter
+        list.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
 
         val itemTouchHelper = ItemTouchHelper(object: ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
             override fun onMove(recyclerView: RecyclerView?, viewHolder: RecyclerView.ViewHolder?,
@@ -61,16 +64,14 @@ class ListFragment : Fragment() {
                             .subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
 //                          .doOnSubscribe { Log.d("TEST", "doOnSubscribe ") }                      //onPreExecute
-                            .doOnComplete { Snackbar.make(list, getString(R.string.item_deleted),    //onPostExecute
+                            .doOnComplete { Snackbar.make(list, R.string.item_deleted,              //onPostExecute
                                     Snackbar.LENGTH_SHORT).show() }
                             .subscribe()
                 }
-                }
+            }
         })
 
-        itemTouchHelper.attachToRecyclerView(recyclerView)
-
-        return recyclerView
+        itemTouchHelper.attachToRecyclerView(list)
     }
 
     private fun deleteItem(position: Int) {

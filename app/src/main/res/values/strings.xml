@@ -14,4 +14,10 @@
     <string name="desc">Item Description</string>
     <string name="save_item">Save Item to DB</string>
 
+    <!-- 'List' top info -->
+    <string name="uid_column">uid</string>
+    <string name="name_column">name</string>
+    <string name="description_column">description</string>
+    <string name="note">\'Items\' table\n * left swipe to delete the item.</string>
+
 </resources>

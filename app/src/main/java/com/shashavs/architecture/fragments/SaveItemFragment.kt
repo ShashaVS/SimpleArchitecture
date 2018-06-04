@@ -38,7 +38,7 @@ class SaveItemFragment: Fragment() {
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
 //                    .doOnSubscribe { Log.d("TEST", "doOnSubscribe ") }                            //onPreExecute
-                    .doOnComplete { Snackbar.make(edit_container, getString(R.string.item_added),    //onPostExecute
+                    .doOnComplete { Snackbar.make(edit_container, R.string.item_added,              //onPostExecute
                             Snackbar.LENGTH_SHORT).show() }
                     .subscribe()
         })

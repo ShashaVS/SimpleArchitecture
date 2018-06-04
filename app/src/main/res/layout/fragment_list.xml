@@ -1,12 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/list"
-    android:name="com.shashavs.architecture.fragments.ListFragment"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:layoutManager="LinearLayoutManager"
-    tools:context=".fragments.ListFragment"
-    tools:listitem="@layout/fragment_item"
-    />
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/header_table"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:text="@string/uid_column" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:text="@string/name_column" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="6"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            android:textSize="16sp"
+            android:layout_gravity="center"
+            android:text="@string/description_column" />
+
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/list"
+        android:name="com.shashavs.architecture.fragments.ListFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layoutManager="LinearLayoutManager"
+        tools:context=".fragments.ListFragment"
+        tools:listitem="@layout/fragment_item"
+        android:layout_below="@+id/header_table"
+        android:layout_above="@+id/note"
+        />
+
+    <TextView
+        android:id="@+id/note"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="4dp"
+        android:textSize="12sp"
+        android:layout_gravity="center"
+        android:text="@string/note"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>
