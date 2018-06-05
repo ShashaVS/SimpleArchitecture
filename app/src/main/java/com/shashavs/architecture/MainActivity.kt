@@ -28,15 +28,19 @@ class MainActivity : AppCompatActivity() {
             }
             false }
 
-        currentFragmentTag = "SaveItemFragment"
-        supportFragmentManager.beginTransaction()
-                .add(R.id.container, SaveItemFragment(), "SaveItemFragment")
-                .commitNow()
+        if(savedInstanceState != null) {
+            currentFragmentTag = savedInstanceState.get("currentFragmentTag") as String
+            loadFragment(currentFragmentTag)
+        } else {
+            currentFragmentTag = "SaveItemFragment"
+            supportFragmentManager.beginTransaction()
+                    .add(R.id.container, SaveItemFragment(), "SaveItemFragment")
+                    .commitNow()
+        }
     }
 
-    private fun loadFragment(tag: String) {
-
-        if(tag != currentFragmentTag) {
+    private fun loadFragment(tag: String?) {
+        if(tag != null && tag != currentFragmentTag) {
             var fragment = supportFragmentManager.findFragmentByTag(tag)
             val currentFragment = supportFragmentManager.findFragmentByTag(currentFragmentTag)
 
@@ -58,6 +62,11 @@ class MainActivity : AppCompatActivity() {
             }
             currentFragmentTag = tag
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle?) {
+        super.onSaveInstanceState(outState)
+        outState?.putString("currentFragmentTag", currentFragmentTag)
     }
 
     override fun onDestroy() {
