@@ -9,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.shashavs.architecture.R
-import com.shashavs.architecture.components.AppViewModel
+import com.shashavs.architecture.components.MainViewModel
 import com.shashavs.architecture.database.ItemEntity
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -18,11 +18,11 @@ import kotlinx.android.synthetic.main.fragment_save_item.*
 
 class SaveItemFragment: Fragment() {
 
-    private var model: AppViewModel? = null
+    private var model: MainViewModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        model = ViewModelProviders.of(this).get(AppViewModel::class.java)
+        model = ViewModelProviders.of(this).get(MainViewModel::class.java)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,

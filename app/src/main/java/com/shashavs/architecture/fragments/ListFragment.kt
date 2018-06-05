@@ -2,6 +2,7 @@ package com.shashavs.architecture.fragments
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
@@ -12,23 +13,24 @@ import android.support.v7.widget.helper.ItemTouchHelper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.shashavs.architecture.DetailActivity
 import com.shashavs.architecture.R
-import com.shashavs.architecture.components.AppViewModel
+import com.shashavs.architecture.components.MainViewModel
 import com.shashavs.architecture.database.ItemEntity
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_list.*
 
-class ListFragment : Fragment() {
+class ListFragment : Fragment(), OnItemListener {
 
     private var adapter: ListAdapter? = null
     private val data: MutableList<ItemEntity> = mutableListOf()
-    private var model: AppViewModel? = null
+    private var model: MainViewModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        model = ViewModelProviders.of(this).get(AppViewModel::class.java)
+        model = ViewModelProviders.of(this).get(MainViewModel::class.java)
         model?.getDataList()?.observe(this, Observer {
             data.clear()
             if(it != null) {
@@ -45,7 +47,7 @@ class ListFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        adapter = ListAdapter(data)
+        adapter = ListAdapter(data, this)
         list.layoutManager = LinearLayoutManager(context)
         list.adapter = adapter
         list.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
@@ -77,6 +79,16 @@ class ListFragment : Fragment() {
     private fun deleteItem(position: Int) {
         val item = data[position]
         model?.delete(item)
+    }
+
+    override fun onItemClick(item: ItemEntity) {
+        val intent = Intent(context, DetailActivity::class.java)
+        intent.putExtra("item", item)
+        activity?.startActivity(intent)
+    }
+
+    override fun onItemLongClick(item: ItemEntity) {
+        // open edit screen
     }
 
 }
