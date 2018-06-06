@@ -37,10 +37,10 @@ class ListAdapter(private val mValues: List<ItemEntity>, val listener: OnItemLis
                 listener.onItemClick(item)
             }
 
-//            mView.setOnLongClickListener({
-//                listener.onItemLongClick(item)
-//                true
-//            })
+            mView.setOnLongClickListener({
+                listener.onItemLongClick(item)
+                true
+            })
         }
     }
 }

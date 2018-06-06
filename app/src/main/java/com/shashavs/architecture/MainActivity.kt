@@ -72,7 +72,6 @@ class MainActivity : AppCompatActivity() {
     override fun onDestroy() {
         navigation.setOnNavigationItemSelectedListener(null)
         AppDatabase.destroyInstance()
-
         super.onDestroy()
     }
 }

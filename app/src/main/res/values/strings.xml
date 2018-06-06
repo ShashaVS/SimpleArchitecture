@@ -9,17 +9,20 @@
     <!-- Snack bar -->
     <string name="item_added">Item was added successfully</string>
     <string name="item_deleted">Item was deleted successfully</string>
+    <string name="item_updated">Item was updated successfully</string>
 
-    <!-- 'Add Item' menu -->
+    <!-- 'Add/Edit Item' menu -->
     <string name="name">Item Name</string>
     <string name="desc">Item Description</string>
     <string name="save_item">Save Item to DB</string>
+    <string name="update_item">Update Item</string>
+    <string name="item_id">Item ID: %1$s</string>
 
     <!-- 'List' top info -->
     <string name="uid_column">uid</string>
     <string name="name_column">name</string>
     <string name="description_column">description</string>
-    <string name="note">\'Items\' table\n * left swipe to delete the item.</string>
+    <string name="note">\'Items\' table\n * Left swipe to delete the item.\n * Long press on item for edit.</string>
     <string name="other_data">any other data…</string>
 
 </resources>

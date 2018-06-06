@@ -52,8 +52,7 @@
         tools:context=".fragments.ListFragment"
         tools:listitem="@layout/fragment_item"
         android:layout_below="@+id/header_table"
-        android:layout_above="@+id/note"
-        />
+        android:layout_above="@+id/note" />
 
     <TextView
         android:id="@+id/note"

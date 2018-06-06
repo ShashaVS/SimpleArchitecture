@@ -22,8 +22,8 @@ class MainViewModel(application: Application): AndroidViewModel(application) {
         return data
     }
 
-    fun insert(item: ItemEntity) {
-        appDatabase?.userDao()?.insert(item)
+    fun insert(item: ItemEntity?) {
+        if(item != null) appDatabase?.userDao()?.insert(item)
     }
 
     fun delete(item: ItemEntity) {
