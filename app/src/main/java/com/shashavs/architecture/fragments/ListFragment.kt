@@ -10,7 +10,6 @@ import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.helper.ItemTouchHelper
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,19 +25,15 @@ import kotlinx.android.synthetic.main.fragment_list.*
 class ListFragment : Fragment(), OnItemListener {
 
     private var adapter: ListAdapter? = null
-    private val data: MutableList<ItemEntity> = mutableListOf()
     private var model: MainViewModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         model = ViewModelProviders.of(this).get(MainViewModel::class.java)
+
         model?.getDataList()?.observe(this, Observer {
-            data.clear()
-            if(it != null) {
-                data.addAll(it)
-                adapter?.notifyDataSetChanged()
-            }
-        })
+            adapter?.submitList(it)
+        } )
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -48,7 +43,7 @@ class ListFragment : Fragment(), OnItemListener {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        adapter = ListAdapter(data, this)
+        adapter = ListAdapter(this)
         list.layoutManager = LinearLayoutManager(context)
         list.adapter = adapter
         list.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
@@ -78,8 +73,8 @@ class ListFragment : Fragment(), OnItemListener {
     }
 
     private fun deleteItem(position: Int) {
-        val item = data[position]
-        model?.delete(item)
+        val item = model?.getDataList()?.value!![position]
+        if(item != null) model?.delete(item)
     }
 
     override fun onItemClick(item: ItemEntity) {
